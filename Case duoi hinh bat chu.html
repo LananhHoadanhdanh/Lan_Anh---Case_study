@@ -12,7 +12,7 @@
 <p>Điểm số: <span id="scores"></span></p>
 <label><input type="text" id="ans"></label> &nbsp; Nhập đáp án vào đây (kí tự đầu tiên viết hoa) <br> <br>
 <button onclick="check()">Kiểm tra</button> &nbsp;
-<button onclick="seeHint()">Xem gợi ý</button> <br>
+<button onclick="getHint()">Xem gợi ý</button> <br>
 <p id="hint"> &nbsp; </p>
 <img src="Images/image1.png" id="img" alt=""> <br>
 
@@ -81,7 +81,7 @@
         }
     }
 
-    function seeHint() {
+    function getHint() {
         document.getElementById("hint").innerHTML = listHint[getIndex()]
     }
 
