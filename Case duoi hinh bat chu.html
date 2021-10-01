@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>ĐUỔI HÌNH BẮT CHỮ</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
 </head>
 <h1>REI'S CASE STUDY: ĐUỔI HÌNH BẮT CHỮ</h1>
 <body>
@@ -31,21 +36,27 @@
     let score = 0;
     document.getElementById('scores').innerHTML = score
 
+
+
     function clearTime() {
         tiMe--
+        let clearTimeHtml = `<p>Rất tiếc, bạn đã hết thời gian rồi. Sau đây là thông tin về người chơi:</p>
+                             <p>Họ và tên người chơi: <span>${fullName}</span></p>
+                             <p>Số câu hỏi hoàn thành: <span>${quesNum - 1}</span></p>
+                             <p>Điểm số đạt được: <span>${quesNum - 1}</span></p>`
         if (tiMe === 0) {
-            document.write('Hết giờ')
+            document.write(clearTimeHtml)
         }
     }
     function reTime() {
         clearTime();
-            document.getElementById('time').innerHTML = tiMe;
+        document.getElementById('time').innerHTML = tiMe;
         setTimeout(reTime, 1000)
     }
     reTime()
 
     function addScore() {
-        score += 2;
+        score ++;
         document.getElementById('scores').innerHTML = score
     }
 
@@ -58,9 +69,14 @@
     }
 
     function changeImage() {
-        document.getElementById('img').src = 'Images/' + listQuestion[getIndex() + 1];
-        if (getIndex() === 5) {
-            document.write('お疲れ様でした。お見事です！')
+        let chucMung = `<p>Xin chúc mừng bạn, bạn đã hoàn thành trò chơi này. Sau đây là thông tin về người chơi:</p>
+                        <p>Họ và tên người chơi: <span>${fullName}</span></p>
+                        <p>Số câu hỏi hoàn thành: <span>${quesNum}</span></p>
+                        <p>Điểm số đạt được: <span>${quesNum}</span></p>`
+        if (getIndex() < listQuestion.length - 1) {
+            document.getElementById('img').src = 'Images/' + listQuestion[getIndex() + 1];
+        } else {
+            document.write(chucMung)
         }
     }
 
@@ -76,14 +92,14 @@
     function check() {
         let answer = document.getElementById('ans').value;
         if (answer === listAnswer[getIndex()]) {
-            alert('おめでとうございます！');
+            alert('Chúc mừng! Bạn đã đoán đúng, mời sang câu hỏi tiếp theo.');
             changeImage()
             nextQues()
             addScore()
             document.getElementById('ans').value = '';
             tiMe = 21;
         } else {
-            alert('残念ながら、間違っています！')
+            alert('Câu trả lời chưa chính xác. Vui lòng trả lời lại!')
         }
     }
 
