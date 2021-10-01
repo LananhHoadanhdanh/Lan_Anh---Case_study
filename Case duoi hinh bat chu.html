@@ -22,7 +22,7 @@
     document.getElementById('name').innerHTML = fullName
     let quesNum = 1;
     document.getElementById('queNum').innerHTML = quesNum
-    let tiMe = 11;
+    let tiMe = 21;
     document.getElementById('time').innerHTML = tiMe
 
     let listQuestion = ['image1.png','image2.png','image3.png','image4.png','image5.png'];
@@ -38,10 +38,8 @@
         }
     }
     function reTime() {
-        if (tiMe > 0) {
-            clearTime();
+        clearTime();
             document.getElementById('time').innerHTML = tiMe;
-        }
         setTimeout(reTime, 1000)
     }
     reTime()
@@ -66,23 +64,27 @@
         }
     }
 
+    function nextQues() {
+        quesNum++
+        document.getElementById('queNum').innerHTML = quesNum
+    }
+
+    function getHint() {
+        document.getElementById("hint").innerHTML = listHint[getIndex()]
+    }
+
     function check() {
         let answer = document.getElementById('ans').value;
         if (answer === listAnswer[getIndex()]) {
             alert('おめでとうございます！');
             changeImage()
-            quesNum++
-            document.getElementById('queNum').innerHTML = quesNum
-            document.getElementById('ans').value = '';
+            nextQues()
             addScore()
-            tiMe = 11;
+            document.getElementById('ans').value = '';
+            tiMe = 21;
         } else {
             alert('残念ながら、間違っています！')
         }
-    }
-
-    function getHint() {
-        document.getElementById("hint").innerHTML = listHint[getIndex()]
     }
 
 </script>
