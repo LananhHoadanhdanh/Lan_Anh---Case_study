@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ĐUỔI HÌNH BẮT CHỮ</title>
+</head>
+<h1>REI'S CASE STUDY: ĐUỔI HÌNH BẮT CHỮ</h1>
+<body>
+<p>Họ và tên người chơi: <span id="name"></span></p>
+<p>Câu hỏi số <span id="queNum"></span>:</p>
+<p>Thời gian còn lại: <span id="time"></span></p>
+<p>Điểm số: <span id="scores"></span></p>
+<label><input type="text" id="ans"></label> &nbsp; Nhập đáp án vào đây (kí tự đầu tiên viết hoa) <br> <br>
+<button onclick="check()">Kiểm tra</button> &nbsp;
+<button onclick="seeHint()">Xem gợi ý</button> <br>
+<p id="hint"> &nbsp; </p>
+<img src="Images/image1.png" id="img" alt=""> <br>
+
+<script>
+
+    let fullName = prompt('Vui lòng nhập họ và tên:')
+    document.getElementById('name').innerHTML = fullName
+    let quesNum = 1;
+    document.getElementById('queNum').innerHTML = quesNum
+    let tiMe = 11;
+    document.getElementById('time').innerHTML = tiMe
+
+    let listQuestion = ['image1.png','image2.png','image3.png','image4.png','image5.png'];
+    let listAnswer = ['Hot dog','Honeymoon','Armchair','Raincoat','Brainstorm'];
+    let listHint = ['H** d*g', '*on**m*on','**mc**ir','Ra**co**','*r*i*s*o*m']
+    let score = 0;
+    document.getElementById('scores').innerHTML = score
+
+    function clearTime() {
+        tiMe--
+        if (tiMe === 0) {
+            document.write('Hết giờ')
+        }
+    }
+    function reTime() {
+        if (tiMe > 0) {
+            clearTime();
+            document.getElementById('time').innerHTML = tiMe;
+        }
+        setTimeout(reTime, 1000)
+    }
+    reTime()
+
+    function addScore() {
+        score += 2;
+        document.getElementById('scores').innerHTML = score
+    }
+
+    function getIndex() {
+        let question = document.getElementById('img');
+        let srcArr = question.src.split('/');
+        let srcQues = srcArr[srcArr.length - 1];
+        let index = listQuestion.indexOf(srcQues)
+        return index
+    }
+
+    function changeImage() {
+        document.getElementById('img').src = 'Images/' + listQuestion[getIndex() + 1];
+        if (getIndex() === 5) {
+            document.write('お疲れ様でした。お見事です！')
+        }
+    }
+
+    function check() {
+        let answer = document.getElementById('ans').value;
+        if (answer === listAnswer[getIndex()]) {
+            alert('おめでとうございます！');
+            changeImage()
+            quesNum++
+            document.getElementById('queNum').innerHTML = quesNum
+            document.getElementById('ans').value = '';
+            addScore()
+            tiMe = 11;
+        } else {
+            alert('残念ながら、間違っています！')
+        }
+    }
+
+    function seeHint() {
+        document.getElementById("hint").innerHTML = listHint[getIndex()]
+    }
+
+</script>
+</body>
+</html>
