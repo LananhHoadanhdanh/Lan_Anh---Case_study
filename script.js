@@ -18,15 +18,15 @@ function clearTime() {
     <div class="div_left">
         <table>
             <tr>
-                <td class="infor"> &nbsp;&nbsp;&nbsp;Full name:</td>
+                <td class="infor">Full name:</td>
                 <td class="getInfor">${fullName}</td>
             </tr>
             <tr>
-                <td class="infor">&nbsp;&nbsp;&nbsp;Number:</td>
+                <td class="infor">Number:</td>
                 <td class="getInfor">${quesNum - 1}</td>
             </tr>
             <tr>
-                <td class="infor">&nbsp;&nbsp;&nbsp;Score:</td>
+                <td class="infor">Score:</td>
                 <td class="getInfor">${quesNum - 1}</td>
             </tr>
         </table>
