@@ -3,106 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>ĐUỔI HÌNH BẮT CHỮ</title>
-    <!--    <style>-->
-    <!--        body{-->
-    <!--            text-align: center;-->
-    <!--        }-->
-    <!--    </style>-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<h1>REI'S CASE STUDY: ĐUỔI HÌNH BẮT CHỮ</h1>
+
 <body>
-<p>Họ và tên người chơi: <span id="name"></span></p>
-<p>Câu hỏi số <span id="queNum"></span>:</p>
-<p>Thời gian còn lại: <span id="time"></span></p>
-<p>Điểm số: <span id="scores"></span></p>
-<label><input type="text" id="ans"></label> &nbsp; Nhập đáp án vào đây (kí tự đầu tiên viết hoa) <br> <br>
-<button onclick="check()">Kiểm tra</button> &nbsp;
-<button onclick="getHint()">Xem gợi ý</button> <br>
-<p id="hint"> &nbsp; </p>
-<img src="Images/image1.png" id="img" alt=""> <br>
+<div class="background">
+    <h1 id="tittle">REI'S CASE STUDY: ĐUỔI HÌNH BẮT CHỮ</h1>
 
-<script>
+    <div id="main" class="main">
 
-    let fullName = prompt('Vui lòng nhập họ và tên:')
-    document.getElementById('name').innerHTML = fullName
-    let quesNum = 1;
-    document.getElementById('queNum').innerHTML = quesNum
-    let tiMe = 21;
-    document.getElementById('time').innerHTML = tiMe
+        <div class="div_left">
+            <table>
+                <tr>
+                    <td class="infor">Full name:</td>
+                    <td class="getInfor" id="name"></td>
+                </tr>
+                <tr>
+                    <td class="infor">Number:</td>
+                    <td class="getInfor" id="queNum"></td>
+                </tr>
+                <tr>
+                    <td class="infor">Time:</td>
+                    <td class="getInfor" id="time"></td>
+                </tr>
+                <tr>
+                    <td class="infor">Score:</td>
+                    <td class="getInfor" id="scores"></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="check()">Check</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="getHint()">Get hint</button></td>
+                    <td class="getInfor" id="hint"></td>
+                </tr>
+            </table>
+        </div>
 
-    let listQuestion = ['image1.png','image2.png','image3.png','image4.png','image5.png'];
-    let listAnswer = ['Hot dog','Honeymoon','Armchair','Raincoat','Brainstorm'];
-    let listHint = ['H** d*g', '*on**m*on','**mc**ir','Ra**co**','*r*i*s*o*m']
-    let score = 0;
-    document.getElementById('scores').innerHTML = score
+        <div class="div_right">
+            <div class="div_rightTop">
+                <img src="Images/image1.png" id="img" alt=""> <br>
+                <label><input class="typeAns" type="text" id="ans"></label> &nbsp; <span class="getInfor" ><b>Type your answer!</b></span>
+            </div>
+
+            <div class="div_rightBot">
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <audio id="bgm" controls autoplay src="Musics/Background.mp3" style="left: 150px"></audio>
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
 
-
-    function clearTime() {
-        tiMe--
-        let clearTimeHtml = `<p>Rất tiếc, bạn đã hết thời gian rồi. Sau đây là thông tin về người chơi:</p>
-                             <p>Họ và tên người chơi: <span>${fullName}</span></p>
-                             <p>Số câu hỏi hoàn thành: <span>${quesNum - 1}</span></p>
-                             <p>Điểm số đạt được: <span>${quesNum - 1}</span></p>`
-        if (tiMe === 0) {
-            document.write(clearTimeHtml)
-        }
-    }
-    function reTime() {
-        clearTime();
-        document.getElementById('time').innerHTML = tiMe;
-        setTimeout(reTime, 1000)
-    }
-    reTime()
-
-    function addScore() {
-        score ++;
-        document.getElementById('scores').innerHTML = score
-    }
-
-    function getIndex() {
-        let question = document.getElementById('img');
-        let srcArr = question.src.split('/');
-        let srcQues = srcArr[srcArr.length - 1];
-        let index = listQuestion.indexOf(srcQues)
-        return index
-    }
-
-    function changeImage() {
-        let chucMung = `<p>Xin chúc mừng bạn, bạn đã hoàn thành trò chơi này. Sau đây là thông tin về người chơi:</p>
-                        <p>Họ và tên người chơi: <span>${fullName}</span></p>
-                        <p>Số câu hỏi hoàn thành: <span>${quesNum}</span></p>
-                        <p>Điểm số đạt được: <span>${quesNum}</span></p>`
-        if (getIndex() < listQuestion.length - 1) {
-            document.getElementById('img').src = 'Images/' + listQuestion[getIndex() + 1];
-        } else {
-            document.write(chucMung)
-        }
-    }
-
-    function nextQues() {
-        quesNum++
-        document.getElementById('queNum').innerHTML = quesNum
-    }
-
-    function getHint() {
-        document.getElementById("hint").innerHTML = listHint[getIndex()]
-    }
-
-    function check() {
-        let answer = document.getElementById('ans').value;
-        if (answer === listAnswer[getIndex()]) {
-            alert('Chúc mừng! Bạn đã đoán đúng, mời sang câu hỏi tiếp theo.');
-            changeImage()
-            nextQues()
-            addScore()
-            document.getElementById('ans').value = '';
-            tiMe = 21;
-        } else {
-            alert('Câu trả lời chưa chính xác. Vui lòng trả lời lại!')
-        }
-    }
-
-</script>
 </body>
 </html>
+<script src="script.js"></script>

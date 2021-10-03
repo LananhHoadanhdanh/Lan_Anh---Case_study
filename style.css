@@ -1,0 +1,81 @@
+.background{
+    border: #000588 solid 5px;
+    width: 80%;
+    height: 650px;
+    background-image: url("Images/background.png");
+    background-size: 100%;
+}
+.main{
+    width: 100%;
+    text-align: center;
+    vertical-align: center;
+    //background-color: #231313;
+}
+
+.div_left{
+    text-align: -moz-right;
+    width: 40%;
+    float: left;
+}
+
+.div_rightTop{
+    text-align: center;
+    width: 100%;
+    //background-color: #75f868;
+}
+
+.div_rightBot{
+    //background-color: #cf93dc;
+    text-align: left;
+}
+
+table{
+    border-spacing: 20px;
+    text-align: center;
+}
+
+h1{
+    font-family: 'Bungee', cursive;
+    text-align: center;
+    font-size: 40px;
+    -webkit-text-stroke: 1px #ffffff;
+    background-color: blueviolet;
+}
+
+.infor{
+    background-color: red;
+    border: #381b1b solid 5px;
+    width: 140px;
+    height: 40px;
+    font-size: 30px;
+    text-shadow: 5px 2px 4px #000000;
+    color: white;
+    font-weight: bold;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.getInfor{
+    width: 200px;
+    height: 40px;
+    font-size: 30px;
+    color: #231313;
+    font-family: 'Patrick Hand', cursive;
+    font-weight: bold;
+}
+
+.button{
+    background-color: #75f868;
+    border: #06002a solid 5px;
+    width: 150px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #231313;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.typeAns{
+    width: 300px;
+    height: 40px;
+    border: #06002a solid 5px;
+}
