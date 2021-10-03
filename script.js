@@ -3,7 +3,7 @@ let fullName = prompt('Vui lòng nhập họ và tên:')
 document.getElementById('name').innerHTML = fullName
 let quesNum = 1;
 document.getElementById('queNum').innerHTML = quesNum
-let tiMe = 21;
+let tiMe = 61;
 document.getElementById('time').innerHTML = tiMe
 
 let listQuestion = ['image1.png','image2.png','image3.png','image4.png','image5.png'];
@@ -116,12 +116,10 @@ function check() {
         nextQues()
         addScore()
         document.getElementById('ans').value = '';
-        tiMe = 21;
+        tiMe = 61;
     } else {
         let unMatch = new Audio('Musics/unmatchSound.mp3');
         unMatch.play()
-        setTimeout (function(){
-            alert("Câu trả lời chưa chính xác. Vui lòng trả lời lại!");
-        }, 500);
+        alert("Câu trả lời chưa chính xác. Vui lòng trả lời lại!");
     }
 }
